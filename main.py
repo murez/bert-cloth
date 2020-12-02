@@ -216,6 +216,7 @@ def main():
             tr_acc = 0
             nb_tr_examples, nb_tr_steps = 0, 0
             for inp, tgt in train_data.data_iter():
+                
                 loss, acc, _, _ = model(inp, tgt)
                 if n_gpu > 1:
                     loss = loss.mean() # mean() to average on multi-gpu.
