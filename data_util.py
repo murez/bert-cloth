@@ -77,6 +77,8 @@ class Preprocessor(object):
             #break
         # print('high school sample:', high_cnt)
         # print('middle school sample:', middle_cnt)
+        print('number of data samples:', len(self.data_objs))
+        print('number of data given:', len(self.data))
         for i in range(len(self.data_objs)):
             self.data_objs[i].convert_tokens_to_ids(self.tokenizer)
             #break
@@ -177,7 +179,7 @@ class Loader(object):
                 question_pos[i,q] = pos
             # high_mask[i] = data.high
         # inp = [articles, articles_mask, options, options_mask, question_pos, mask, high_mask]
-        inp = [articles, articles_mask, options, options_mask, question_pos, mask,[]]
+        inp = [articles, articles_mask, options, options_mask, question_pos, mask]
         tgt = answers
         return inp, tgt
                 

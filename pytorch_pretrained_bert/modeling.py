@@ -1054,7 +1054,8 @@ class BertForCloth(PreTrainedBertModel):
         option -> bsz X opnum X 4 X olen
         output: bsz X opnum 
         '''
-        articles, articles_mask, ops, ops_mask, question_pos, mask, high_mask = inp 
+        #articles, articles_mask, ops, ops_mask, question_pos, mask, high_mask = inp
+        articles, articles_mask, ops, ops_mask, question_pos, mask = inp
         
         bsz = ops.size(0)
         opnum = ops.size(1)   
@@ -1082,12 +1083,12 @@ class BertForCloth(PreTrainedBertModel):
         loss = loss * mask
         acc = acc * mask
         acc = acc.sum(-1)
-        acc_high = (acc * high_mask).sum()
+        #acc_high = (acc * high_mask).sum()
         acc = acc.sum()
-        acc_middle = acc - acc_high
+        #acc_middle = acc - acc_high
 
         loss = loss.sum()/(mask.sum())
-        return loss, acc, acc_high, acc_middle
+        return loss, acc
                            
     def init_zero_weight(self, shape):
         weight = next(self.parameters())
